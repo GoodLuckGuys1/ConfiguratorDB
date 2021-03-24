@@ -1,0 +1,39 @@
+﻿<Window x:Class="ConfiguratorDB.Windows.GeneratorOrders"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ConfiguratorDB.Windows" 
+        xmlns:viewModels="clr-namespace:ConfiguratorDB.ViewModels"
+        mc:Ignorable="d"
+        Title="GeneratorOrders" Height="450" Width="400">
+    <Window.DataContext>
+        <viewModels:GeneratorOrdersVM/>
+    </Window.DataContext>
+    <StackPanel Background="#FF616161">
+    <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="30"/>
+
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Label Foreground="#FFB9B9B9"  Grid.Row="1" Grid.Column ="1"  Content="{Binding CountOrdersStatus}" HorizontalContentAlignment="Center"/>
+            <Slider IsEnabled="{Binding IsEnabledSlider}" TickPlacement="BottomRight" Grid.Row="3" Grid.Column ="1" Minimum="1000" Value="{Binding CountOrders}" Maximum="10000" TickFrequency="1" IsSnapToTickEnabled="True"/>
+            <Button IsEnabled="{Binding IsEnabledButton}" Content= "Add Random Orders" Command="{Binding AddOrders}" Grid.Row="5" Grid.Column="1"/>
+            <ProgressBar Grid.Row="7" Grid.Column="1" Maximum="{Binding MaximumValue}" Minimum="{Binding MinimumValue}" Value="{Binding CurrentProgress, Mode=OneWay}"/>
+            </Grid>
+    </StackPanel>
+</Window>
