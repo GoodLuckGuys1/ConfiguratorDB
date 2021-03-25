@@ -2,7 +2,6 @@
 using ConfiguratorDB.HelperClasses;
 using ConfiguratorDB.Models;
 using ConfiguratorDB.Repositories;
-using ConfiguratorDB.Windows;
 using System;
 using System.ComponentModel;
 using System.Data.Entity;
@@ -20,7 +19,6 @@ namespace ConfiguratorDB.ViewModels
         private int currentProgress;
         private int maximumValue;
         private int minimumValue;
-
 
         public int MaximumValue
         {
@@ -90,6 +88,7 @@ namespace ConfiguratorDB.ViewModels
             }
         }
         public ICommand ConnectWithDb { get; set; }
+        public bool IsSuccessConnect = false;
         public ConnectionDataBaseVM()
         {
             ConnectWithDb = new RelayAsyncCommand(async () => await connectionWithDataBase());
@@ -107,12 +106,12 @@ namespace ConfiguratorDB.ViewModels
 
             if (string.IsNullOrEmpty(NameDatabase))
             {
-                Status = "Database name is not valid";
+                ((IProgress<string>)status).Report("Database name is not valid");
                 return;
             }
             if (string.IsNullOrEmpty(ServerDatabase))
             {
-                Status = "Server name is not valid";
+                ((IProgress<string>)status).Report("Server name is not valid");
                 return;
             }
 
@@ -142,6 +141,7 @@ namespace ConfiguratorDB.ViewModels
                 
             }
             Status = "Connection success";
+            IsSuccessConnect = true;
             context.Dispose();
         }
 

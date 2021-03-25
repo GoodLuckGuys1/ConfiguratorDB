@@ -21,7 +21,17 @@ namespace ConfiguratorDB.ViewModels
         private int currentProgress;
         private int maximumValue;
         private int minimumValue;
+        private bool? _dialogResult;
 
+        public bool? DialogResult
+        {
+            get { return _dialogResult; }
+            protected set
+            {
+                _dialogResult = value;
+                OnPropertyChanged();
+            }
+        }
         public bool IsEnabledSlider
         {
             get { return isEnabledSlider; }
@@ -119,8 +129,12 @@ namespace ConfiguratorDB.ViewModels
             ConnectionDataBase connectionDataBase = new ConnectionDataBase();
             ConnectionDataBaseVM connectionDataBaseVM = (ConnectionDataBaseVM)connectionDataBase.DataContext;
             connectionDataBase.ShowDialog();
-            if (connectionDataBaseVM.ServerDatabase != null)
-                contextDb = new ContextDb($"Server={connectionDataBaseVM.ServerDatabase};Database={connectionDataBaseVM.NameDatabase};Trusted_Connection=False;MultipleActiveResultSets=true;");
+            if (connectionDataBaseVM.IsSuccessConnect == false)
+            {
+                DialogResult = false;
+                return;
+            }
+            contextDb = new ContextDb($"Server={connectionDataBaseVM.ServerDatabase};Database={connectionDataBaseVM.NameDatabase};Trusted_Connection=False;MultipleActiveResultSets=true;");
         }
 
 

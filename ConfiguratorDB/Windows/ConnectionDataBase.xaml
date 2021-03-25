@@ -48,5 +48,5 @@
             <Label Foreground="#FFB9B9B9"  Grid.Row="3" Grid.Column="1" Content="{Binding Status}" HorizontalContentAlignment="Center"/>
             <ProgressBar Grid.Row="5" Grid.Column="1" Maximum="{Binding MaximumValue}" Minimum="{Binding MinimumValue}" Value="{Binding CurrentProgress, Mode=OneWay}"/>
         </Grid>
-        </StackPanel>
+    </StackPanel>
 </Window>

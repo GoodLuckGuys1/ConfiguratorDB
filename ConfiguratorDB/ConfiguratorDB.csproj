@@ -74,6 +74,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Context\ContextDb.cs" />
+    <Compile Include="HelperClasses\DialogCloser.cs" />
     <Compile Include="HelperClasses\RelayAsyncCommand.cs" />
     <Compile Include="Repositories\CustomerRepository.cs" />
     <Compile Include="HelperClasses\RelayCommand.cs" />
